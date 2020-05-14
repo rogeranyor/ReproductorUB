@@ -145,6 +145,7 @@ public class ReproductorUB {
                             for(int i=0;i<lista.size();i++){
                                 System.out.print(lista.get(i)); 
                             }
+                            System.out.println("\n");
                         break;
                         default:
                             System.out.println("No existeix la opcio introduïda");
@@ -182,10 +183,11 @@ public class ReproductorUB {
                             System.out.println("Quin portafoli vols veure? Escriu el titol");
                             titol = sc.nextLine();
                             lista=controlador.showPortafoli(titol);
-                            
                             for(int i=0;i<lista.size();i++){           
-                                 System.out.println("\n"+(i+1) +lista.get(i));                            
+                                 System.out.print(lista.get(i));  
+                                 
                             }
+           
                             System.out.println("Quin vols eliminar? Escriu el numero");
                             eliminar = sc.nextInt();
                             
@@ -450,6 +452,7 @@ public class ReproductorUB {
                 case MENU_SUBPRINCIPAL_OPCIO3:
                    try{
                    controlador.stopReproduccio();
+                   controlador.closeFinestraReproductor();
                    }
                    catch(ReproException e){
                        System.out.println("No hi ha cap reproducció en curs.");
@@ -510,11 +513,6 @@ public class ReproductorUB {
                         
                     case MENU_PRINCIPAL_SORTIR:
                         System.out.println("Fins aviat!");
-                        try{
-                        controlador.closeFinestraReproductor();}
-                        catch(ReproException e){
-                            System.out.println("La finestra no estava oberta");
-                        }
                         break;
                     default:
                         System.out.println("No és una opció valida.");

@@ -84,9 +84,11 @@ public class Dades implements Serializable{
      
         try{
             for (int x=0;x<portafolis.size();x++){
-                if(this.portafolis.get(x).llistaFitxers.contains(this.repositori.getAt(i))){                
-                }                   
-                System.out.println("Borrat del portafoli "+ this.portafolis.get(x).getTitol());                   
+                if(this.portafolis.get(x).llistaFitxers.contains(this.repositori.getAt(i))){   
+                        System.out.println("Borrat del portafoli "+ this.portafolis.get(x).getTitol());    
+			this.portafolis.get(x).llistaFitxers.remove(this.repositori.getAt(i));
+                        x--;
+                }                                       
             }
             this.repositori.removeFitxer(this.repositori.getAt(i)); 
             

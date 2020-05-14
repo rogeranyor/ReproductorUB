@@ -89,14 +89,14 @@ public abstract  class FitxerMultimedia extends File implements InFile{
         fitxer+= "\n AUDIO: " + "\n  Nom: "+f.getNomFitxer() +"\n  Autor: "+ f.getAutor()+ 
                  "\n  Camí: "+ f.getCamiAbsolut()+ "\n  Ultima modificació: "+ 
                  f.getUltimaModificacio()+ "\n  Codec: "+ 
-                 f.codec+ "\n  Cami foto: "+f.getFitxerImatge()+ "\n  Kbps: " +f.getKbps();
+                 f.codec+ "\n  Cami foto: "+f.getFitxerImatge()+ "\n  Kbps: " +f.getKbps()+"\n";
         }
         else if(this instanceof Imatge){
         Imatge f= (Imatge) this;
         fitxer+= "IMATGE: " + "\n  Nom: "+f.getNomFitxer() +"\n  Autor: "+ f.getAutor()+ 
                  "\n  Camí: "+ f.getCamiAbsolut()+ "\n  Ultima modificació: "+ 
                  f.getUltimaModificacio()+ "\n  Codec: "+ 
-                 f.codec+ "\n  Alçada: "+f.getAlçada()+"\n  Amplada: "+f.getAmplada();
+                 f.codec+ "\n  Alçada: "+f.getAlçada()+"\n  Amplada: "+f.getAmplada()+"\n";
         }
     return fitxer;
     
