@@ -276,7 +276,12 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void playLlista(String string) throws ReproException {
-        escoltador.iniciarReproduccio(this.data.getPortafoli(string), this.getCiclic(), this.getReverse());
+        try{
+        escoltador.iniciarReproduccio(this.data.getPortafoli(string), this.getCiclic(), this.getReverse());}
+        catch(IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException(e.getMessage());
+        
+        }
     }
 
     /**

@@ -67,6 +67,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         llistaPortafolis = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jScrollPane1.setViewportView(llistaRepositori);
 
@@ -558,9 +559,20 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             try {
                 controlador.closeFinestraReproductor();
             } catch (ReproException ex1) {
+                err.setText("Porfoli no disponible");
+                err.setVisible(true);
+            }
+        }
+        catch(IndexOutOfBoundsException e){
+            err.setText("Porfoli no disponible");
+            err.setVisible(true);
+            try {
+                controlador.closeFinestraReproductor();
+            } catch (ReproException ex) {
                 err.setText(ex.getMessage());
                 err.setVisible(true);
             }
+        
         }
     }//GEN-LAST:event_btnReprodouïrRepositori1ActionPerformed
     private void llistaPortafolisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llistaPortafolisActionPerformed

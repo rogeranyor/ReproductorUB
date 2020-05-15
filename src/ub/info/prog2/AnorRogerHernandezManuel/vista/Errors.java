@@ -34,6 +34,11 @@ public class Errors extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtError.setEditable(false);
+        txtError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtErrorActionPerformed(evt);
+            }
+        });
 
         btnAccept.setText("Acceptar");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +76,10 @@ public class Errors extends javax.swing.JDialog {
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void txtErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtErrorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtErrorActionPerformed
     public void setText(String string){
         this.txtError.setText(string);
     
