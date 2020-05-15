@@ -37,7 +37,11 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void addAudio(String camiAudio, String camiImatge, String autor, String codec, int kbps) throws ReproException {
-        data.addAudio(camiAudio, camiImatge, autor, codec, kbps,motor);      
+        try{
+            data.addAudio(camiAudio, camiImatge, autor, codec, kbps,motor);     }
+        catch(ReproException e){
+            throw new ReproException(e.getMessage());
+        }
     }
     /**
      * Llama al metode addImatge de dades.
@@ -74,8 +78,13 @@ public class Controlador implements InControlador  {
     public void removeFitxer(int i) throws ReproException {
         try{
             data.eliminarfitxer(i-1);}
-        catch(ArrayIndexOutOfBoundsException e ){}
-    }
+        catch(ArrayIndexOutOfBoundsException e ){
+            throw new IndexOutOfBoundsException(e.getMessage());
+        }
+        catch(ReproException e ){
+            throw new ReproException(e.getMessage());
+        }
+    }   
 
     /**
      * Guarda les dades en un fitxer
@@ -143,8 +152,15 @@ public class Controlador implements InControlador  {
      * @throws ReproException Llença un error en el cas de una excepció
      */
     @Override
-    public void removePortafoli(String string) throws ReproException {
-        data.eliminarporfoli(string);
+    public void removePortafoli(String string) throws NullPointerException, ReproException {
+        try{
+        data.eliminarporfoli(string);}
+        catch(NullPointerException e){
+            throw new NullPointerException(e.getMessage());
+        }
+        catch(ReproException e){
+            throw new ReproException(e.getMessage());
+        }
     }
 
     /**
@@ -166,12 +182,11 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void addFitxer(String titol, int i) throws ReproException,IndexOutOfBoundsException {
-        try{data.addFitxerPortafoli(titol, (i-1));}
-        catch(ReproException  ex){
-            System.out.println(ex.getCause());   
+        try{data.addFitxerPortafoli(titol, (i-1));}    
+        catch(NullPointerException  ex){
+            throw new NullPointerException (ex.getMessage());  
         }
-        catch(IndexOutOfBoundsException  ex){
-            System.out.println("Index Out of Range");
+        catch(ReproException  ex){
             System.out.println(ex.getCause());   
         }
     }
@@ -195,7 +210,12 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void removeFitxer(String string, int i) throws ReproException {
-        data.removeFitxerPortafoli(string, (i-1));    
+        try{
+            data.removeFitxerPortafoli(string, (i-1));    
+        }
+        catch(NullPointerException e){
+            throw new NullPointerException(e.getMessage());
+        }
     }
     
     /**
@@ -207,8 +227,20 @@ public class Controlador implements InControlador  {
     public void playFitxer(int i) throws ReproException {  
         FitxerMultimedia f= (FitxerMultimedia) data.getFitxer(i-1);
         LlistaFitxers llista_temp=new LlistaFitxers();
-        llista_temp.addFitxer(f);  
-        escoltador.iniciarReproduccio(llista_temp, this.getCiclic(), this.getReverse());
+        llista_temp.addFitxer(f); 
+        try{
+            escoltador.iniciarReproduccio(llista_temp, this.getCiclic(), this.getReverse());
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
+            throw new ArrayIndexOutOfBoundsException(e.getMessage());
+        }
+        catch(NullPointerException e){
+            throw new NullPointerException(e.getMessage());
+        }
+        catch(ReproException e){
+            throw new ReproException(e.getMessage());
+        }
     }
     
     /**
@@ -280,7 +312,11 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void jumpReproduccio() throws ReproException {
-        escoltador.next();
+        try{
+        escoltador.next();}
+        catch(IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException(e.getMessage());
+        }
     }
     
     /**

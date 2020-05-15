@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ub.info.prog2.AnorRogerHernandezManuel.vista;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -20,11 +19,16 @@ public class AplicacioUB4 extends javax.swing.JFrame {
     /**
      * Creates new form AplicacioUB4
      */
+    Errors err;
     Controlador controlador;
     public AplicacioUB4() {
         initComponents();
         controlador=new Controlador();
         this.setLocationRelativeTo(null);
+        err=new Errors(this,true);
+        err.setTitle("Error");
+        err.pack();
+        err.setLocationRelativeTo(null);
     }
 
     /**
@@ -363,14 +367,24 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         try {
             controlador.openFinestraReproductor();
             controlador.playFitxer(this.llistaRepositori.getSelectedIndex()+1);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+           err.setText("Array buida");
+           err.setVisible(true);
+            try {
+                controlador.closeFinestraReproductor();
+            } catch (ReproException ex1) {
+                err.setText(ex.getMessage());
+                err.setVisible(true);
+            }
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
         
     }//GEN-LAST:event_btnReproduirFitxerActionPerformed
 
     private void btnAfegitFitxerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegitFitxerActionPerformed
-        FrmAfegirFitxerMultimedia dialog =new FrmAfegirFitxerMultimedia(this,true,controlador);
+        FrmAfegirFitxerMultimedia dialog =new FrmAfegirFitxerMultimedia(this,true,controlador,err);
         dialog.setTitle("Afegir Arxiu");
         dialog.pack();
         dialog.setVisible(true);   
@@ -384,7 +398,12 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             omplirLlistaRepositori();
             this.omplirLlistaPortafoliFitxers();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
+        }
+        catch (IndexOutOfBoundsException ex) {
+           err.setText(ex.getMessage());
+           err.setVisible(true);
         }
                
          
@@ -394,8 +413,19 @@ public class AplicacioUB4 extends javax.swing.JFrame {
          try {
             controlador.openFinestraReproductor();
             controlador.playLlista();
+             } 
+         catch (IndexOutOfBoundsException ex) {
+           err.setText("Array buida");
+           err.setVisible(true);
+            try {
+                controlador.closeFinestraReproductor();
+            } catch (ReproException ex1) {
+                err.setText(ex.getMessage());
+                err.setVisible(true);
+            }
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnReproduirTotActionPerformed
 
@@ -407,7 +437,8 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             omplirLlistaPorfatolis();
             this.omplirLlistaPortafoliFitxers();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnRecuperarActionPerformed
 
@@ -415,7 +446,8 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         try {
             controlador.saveDades("data.dat");
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -423,7 +455,8 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         try {
             controlador.pauseReproduccio();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnPausaActionPerformed
 
@@ -431,7 +464,8 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         try {
             controlador.resumeReproduccio();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnResumeActionPerformed
 
@@ -458,15 +492,21 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             controlador.closeFinestraReproductor();
             controlador.stopReproduccio();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnPararActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         try {
             controlador.jumpReproduccio();
-        } catch (ReproException ex) {
-            ex.getMessage();
+        } catch (ReproException|NullPointerException ex) {
+            err.setText("Llista acabada, torna a començar o activa el ciclic");
+            err.setVisible(true);
+        }
+        catch(IndexOutOfBoundsException e){
+            err.setText("Llista acabada, torna a començar o activa el ciclic");
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnNextActionPerformed
 
@@ -476,7 +516,12 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             controlador.removePortafoli(this.llistaPortafolis.getSelectedItem().toString());
             omplirLlistaPorfatolis();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
+        }
+        catch (NullPointerException ex) {
+            err.setText("Opció no valida");
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnEliminarPortafoliActionPerformed
 
@@ -495,9 +540,11 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             controlador.addFitxer(this.llistaPortafolis.getSelectedItem().toString(), this.llistaRepositori.getSelectedIndex()+1);
             omplirLlistaPortafoliFitxers();
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IndexOutOfBoundsException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);
+        } catch (NullPointerException ex) {
+            err.setText("Fitxer no seleccionat");
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnAfegirFitxerPortafoliActionPerformed
 
@@ -505,8 +552,15 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         try {
             controlador.openFinestraReproductor();
             controlador.playLlista(this.llistaPortafolis.getSelectedItem().toString());
-        } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+        } catch (ReproException|NullPointerException ex) {
+            err.setText("Portafoli buit");
+            err.setVisible(true);
+            try {
+                controlador.closeFinestraReproductor();
+            } catch (ReproException ex1) {
+                err.setText(ex.getMessage());
+                err.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnReprodouïrRepositori1ActionPerformed
     private void llistaPortafolisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llistaPortafolisActionPerformed
@@ -518,7 +572,11 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             omplirLlistaPortafoliFitxers();
             
         } catch (ReproException ex) {
-            System.out.println(ex.getMessage());
+            err.setText(ex.getMessage());
+            err.setVisible(true);    
+        } catch (NullPointerException ex) {
+            err.setText("Fitxer no valid o no existeix");
+            err.setVisible(true);
         }
     }//GEN-LAST:event_btnEliminarFitxerPortafoliActionPerformed
     public void omplirLlistaRepositori(){ //repositori
@@ -545,7 +603,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
                 }         
             this.llistaFitxersPorfatoli.setModel(model);
         } catch (ReproException |NullPointerException ex) {
-            System.out.println(ex.getMessage());
+            
         }
     
     

@@ -38,8 +38,7 @@ public class Dades implements Serializable{
         Audio audio = new Audio(camiAudio, imatge, autor, codec,kbps,motor);
         repositori.addFitxer(audio);  }
          catch(ReproException e){
-           System.out.println("No existeix l'arxiu");
-           System.out.println(e.getCause());
+           throw new ReproException(e.getMessage());
        }
     }
     
@@ -108,7 +107,7 @@ public class Dades implements Serializable{
             
         }  
         catch(IndexOutOfBoundsException ex){
-            System.out.println("Indice no valido");
+            throw new IndexOutOfBoundsException("Indice no valido");
         }
     }
     
@@ -162,9 +161,8 @@ public class Dades implements Serializable{
              
             }
         }
-        catch(ArrayIndexOutOfBoundsException e){
-            throw new ReproException("No existeix el porfoli");
-             
+        catch(NullPointerException e){
+            throw new NullPointerException("No existeix el porfoli");         
         } 
     }
      
@@ -196,7 +194,7 @@ public class Dades implements Serializable{
      * @param x Demana l'index dins del portafoli
      * @throws ReproException Llença un error en el cas de una excepció
      */
-    public void addFitxerPortafoli(String titol,int x) throws ReproException{
+    public void addFitxerPortafoli(String titol,int x) throws ReproException,NullPointerException {
         boolean afegit = false;
         int i =0;
         
@@ -208,6 +206,9 @@ public class Dades implements Serializable{
                 } catch (ReproException ex) {
                     ex.getCause();
                     throw new ReproException("No s'ha afegit l'arxiu");
+                }
+                catch(NullPointerException e){
+                    throw new NullPointerException("Index no valid");
                 }
             }
             else{i++;}
@@ -259,8 +260,8 @@ public class Dades implements Serializable{
             System.out.println("Indice no valido");
         
         }
-        catch(IndexOutOfBoundsException ex){
-            System.out.println("Indice no valido");
+        catch(NullPointerException ex){
+            throw new NullPointerException("Index no valid");
         }
     }
     public File getFitxer(int i){

@@ -20,6 +20,7 @@ public class FrmAfegirFitxerMultimedia extends javax.swing.JDialog {
      * Creates new form FrmAfegirFitxerMultimedia
      */
     Controlador controlador;
+    Errors err;
     public FrmAfegirFitxerMultimedia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,13 +28,14 @@ public class FrmAfegirFitxerMultimedia extends javax.swing.JDialog {
         this.btnSelectImatge.setEnabled(true);
        
     }
-    public FrmAfegirFitxerMultimedia(java.awt.Frame parent, boolean modal,Controlador controlador) {
+    public FrmAfegirFitxerMultimedia(java.awt.Frame parent, boolean modal,Controlador controlador,Errors err) {
         super(parent, modal);
         initComponents();
         this.btnSelectAudio.setEnabled(true);
         this.btnSelectImatge.setEnabled(true);
         this.controlador=controlador;
         this.setLocationRelativeTo(null);
+        this.err=err;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,7 +202,8 @@ public class FrmAfegirFitxerMultimedia extends javax.swing.JDialog {
                 controlador.addAudio(this.txtFitxerAudio.getText(),this.txtFitxerImatge.getText(),this.txtAutor.getText(),".mp3",123);
                 this.dispose();
             } catch (ReproException ex) {
-                
+                err.setText(ex.getMessage());
+                err.setVisible(true);
             }
         }
         else{
@@ -208,7 +211,8 @@ public class FrmAfegirFitxerMultimedia extends javax.swing.JDialog {
                 controlador.addImatge(this.txtFitxerImatge.getText(),this.txtAutor.getText(),".jpg", 10, 10);
                 this.dispose();
             } catch (ReproException ex) {
-                
+                err.setText(ex.getMessage());
+                err.setVisible(true);
             }       
                     
         }    

@@ -66,10 +66,10 @@ public class EscoltadorReproduccio extends EscoltadorReproduccioBasic {
             }       
         } 
         catch (ReproException ex) {
-            System.out.println(ex.getCause()+"\nNo s'ha pogut reproduïr");
+             throw new IndexOutOfBoundsException("No s'ha pogut reproduïr");
         }  
         catch(IndexOutOfBoundsException e){
-            System.out.println(e.getCause()+"\nNo s'ha pogut reproduïr");
+            throw new IndexOutOfBoundsException("No s'ha pogut reproduïr");
         }
     }
 
@@ -89,7 +89,7 @@ public class EscoltadorReproduccio extends EscoltadorReproduccioBasic {
      * @param reproduccioCilcica Opcio per fer la reproducció de la llista ciclica.
      * @param reproduccioReverse Opcio per fer la reproducció de la llista en reverse.
      */
-    public void iniciarReproduccio(LlistaFitxers llistaReproduint, boolean reproduccioCilcica, boolean reproduccioReverse){ 
+    public void iniciarReproduccio(LlistaFitxers llistaReproduint, boolean reproduccioCilcica, boolean reproduccioReverse) throws ReproException{ 
         this.llistaReproduint   = llistaReproduint;
         this.reproduccioCiclica = reproduccioCilcica;
         this.reproduccioReverse = reproduccioReverse;
@@ -106,15 +106,14 @@ public class EscoltadorReproduccio extends EscoltadorReproduccioBasic {
             ((FitxerMultimedia) f).reproduir();  
         }
         catch(NullPointerException e){
-            System.out.println("No existeix el portafoli/ fitxer escollit");        
+            throw new NullPointerException("No es pot reproduïr");       
         }
         catch (ReproException ex ) {
-            System.out.println(ex.getCause()+"\nNo s'ha pogut reproduïr");
+            throw new ReproException("No es pot reproduïr");       
         }
-        catch(IndexOutOfBoundsException e){
-            System.out.println(e.getCause()+"\nNo s'ha pogut reproduïr");
+        catch(ArrayIndexOutOfBoundsException e){
+            throw new ArrayIndexOutOfBoundsException("No es pot reproduïr");       
         }
-        
 
         
     }
