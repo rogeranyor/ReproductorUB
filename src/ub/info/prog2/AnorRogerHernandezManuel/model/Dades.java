@@ -75,6 +75,15 @@ public class Dades implements Serializable{
         }
         return lista;
     }
+    public List<String> mostrarRepositoriChiquito(){
+        List<String>lista = new ArrayList<>();
+        String temp=" ";
+        for (int i=0;i<repositori.getSize();i++){
+            temp= (i+1)+". "+repositori.getAt(i).getName()+"\n";
+            lista.add(temp);      
+        }
+        return lista;
+    }
     /**
      * Elimina un fitxer del repositori multimedia
      * @param i Demana l'index del fitxer
@@ -127,7 +136,7 @@ public class Dades implements Serializable{
         String temp=" ";
          
         for(int i=0; i<this.portafolis.size();i++){
-            temp=(i+1)+". "+this.portafolis.get(i).getTitol()+"\n";
+            temp=this.portafolis.get(i).getTitol();
             lista.add(temp);       
         }        
         return lista;
@@ -216,7 +225,9 @@ public class Dades implements Serializable{
         boolean trobat=false;
         while(i<portafolis.size() && !trobat){
             if(this.portafolis.get(i).getTitol().equals(titol)){
-                p.add(this.portafolis.get(i).toString());
+                for(int x=0;x<this.portafolis.get(i).llistaFitxers.size();x++){
+                    p.add(this.portafolis.get(i).llistaFitxers.get(x).getName());
+                }
                 trobat=true;
             
             }

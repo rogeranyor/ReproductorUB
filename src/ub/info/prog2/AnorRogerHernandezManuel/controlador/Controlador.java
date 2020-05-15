@@ -61,6 +61,9 @@ public class Controlador implements InControlador  {
     public List<String> showRepositori() {
        return data.mostrarRepositori();
     }
+     public List<String> showRepositoriChiquito() {
+       return data.mostrarRepositoriChiquito();
+    }
 
     /**
      * Llama al metode eliminarfitxer de dades
