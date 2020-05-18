@@ -52,7 +52,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         btnResume = new javax.swing.JButton();
         btnParar = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
-        btnReverse1 = new javax.swing.JToggleButton();
+        btnCiclic = new javax.swing.JToggleButton();
         btnReverse = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         btnCrearPortafoli = new javax.swing.JButton();
@@ -165,10 +165,10 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             }
         });
 
-        btnReverse1.setText("Activa/desactiva Cíclic");
-        btnReverse1.addActionListener(new java.awt.event.ActionListener() {
+        btnCiclic.setText("Activa/desactiva Cíclic");
+        btnCiclic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReverse1ActionPerformed(evt);
+                btnCiclicActionPerformed(evt);
             }
         });
 
@@ -194,7 +194,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReverse1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCiclic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnReverse, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +212,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnReverse1)
+                        .addComponent(btnCiclic)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(btnReverse))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -437,6 +437,8 @@ public class AplicacioUB4 extends javax.swing.JFrame {
             omplirLlistaRepositori();
             omplirLlistaPorfatolis();
             this.omplirLlistaPortafoliFitxers();
+            this.btnCiclic.setSelected(controlador.getCiclic());
+            this.btnReverse.setSelected(controlador.getReverse());
         } catch (ReproException ex) {
             err.setText(ex.getMessage());
             err.setVisible(true);
@@ -479,14 +481,14 @@ public class AplicacioUB4 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReverseActionPerformed
 
-    private void btnReverse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReverse1ActionPerformed
+    private void btnCiclicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCiclicActionPerformed
         if(controlador.getCiclic()){
             controlador.setCiclic(false);
         }
         else{
             controlador.setCiclic(true);
         }
-    }//GEN-LAST:event_btnReverse1ActionPerformed
+    }//GEN-LAST:event_btnCiclicActionPerformed
 
     private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
         try {      
@@ -656,6 +658,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfegirFitxerPortafoli;
     private javax.swing.JButton btnAfegitFitxer;
+    private javax.swing.JToggleButton btnCiclic;
     private javax.swing.JButton btnCrearPortafoli;
     private javax.swing.JButton btnEliminarFitxer;
     private javax.swing.JButton btnEliminarFitxerPortafoli;
@@ -670,7 +673,6 @@ public class AplicacioUB4 extends javax.swing.JFrame {
     private javax.swing.JButton btnReproduirTot;
     private javax.swing.JButton btnResume;
     private javax.swing.JToggleButton btnReverse;
-    private javax.swing.JToggleButton btnReverse1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

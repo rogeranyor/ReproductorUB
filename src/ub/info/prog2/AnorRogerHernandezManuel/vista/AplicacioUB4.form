@@ -204,7 +204,7 @@
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnReverse1" max="32767" attributes="0"/>
+                      <Component id="btnCiclic" max="32767" attributes="0"/>
                       <Component id="btnReverse" alignment="0" pref="207" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -226,7 +226,7 @@
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btnReverse1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCiclic" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="11" max="32767" attributes="0"/>
                           <Component id="btnReverse" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -272,12 +272,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="btnReverse1">
+        <Component class="javax.swing.JToggleButton" name="btnCiclic">
           <Properties>
             <Property name="text" type="java.lang.String" value="Activa/desactiva C&#xed;clic"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReverse1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCiclicActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnReverse">
