@@ -308,6 +308,7 @@ public class Controlador implements InControlador  {
      */
     @Override
     public void stopReproduccio() throws ReproException {
+        closeFinestraReproductor();
         motor.stop();
     }
 

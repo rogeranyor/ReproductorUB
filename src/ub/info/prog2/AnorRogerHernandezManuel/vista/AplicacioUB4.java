@@ -489,8 +489,7 @@ public class AplicacioUB4 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReverse1ActionPerformed
 
     private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
-        try {
-            controlador.closeFinestraReproductor();
+        try {      
             controlador.stopReproduccio();
         } catch (ReproException ex) {
             err.setText(ex.getMessage());
@@ -513,7 +512,6 @@ public class AplicacioUB4 extends javax.swing.JFrame {
 
     private void btnEliminarPortafoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPortafoliActionPerformed
         try {
-            System.out.println(this.llistaPortafolis.getSelectedItem().toString());
             controlador.removePortafoli(this.llistaPortafolis.getSelectedItem().toString());
             omplirLlistaPorfatolis();
         } catch (ReproException ex) {

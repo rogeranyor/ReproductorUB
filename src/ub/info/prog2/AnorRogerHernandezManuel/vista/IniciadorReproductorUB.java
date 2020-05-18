@@ -9,10 +9,11 @@ public class IniciadorReproductorUB {
      */
     public static void main(String[] args) throws ReproException {
         
-        ReproductorUB repro = new ReproductorUB();
-        
-        repro.gestioReproductorUB();
-        //hola
+//        ReproductorUB repro = new ReproductorUB();
+//        
+//        repro.gestioReproductorUB();
+        AplicacioUB4 repro =new AplicacioUB4();
+        repro.setVisible(true);
         
     }
     
